@@ -1,3 +1,8 @@
+## 6.6.2 - upcoming relase
+
+### Features
+  - Add `maintenance_window`, `tier` and multiple regional endpoints for VPN Wireguard & IPSec resources.
+
 ## 6.6.1
 
 ### Features
