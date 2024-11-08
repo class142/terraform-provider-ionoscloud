@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -29,9 +30,15 @@ var locationToURL = map[string]string{
 // This function is required in order to make requests to different endpoints based on location.
 func (c *MariaDBClient) modifyConfigURL(location string) {
 	clientConfig := c.sdkClient.GetConfig()
+
+	//use MARIADB_API_URL environment variable if set
+	mariadbURL := locationToURL[location]
+	if os.Getenv("MARIADB_API_URL") != "" {
+		mariadbURL = os.Getenv("MARIADB_API_URL")
+	}
 	clientConfig.Servers = mariadb.ServerConfigurations{
 		{
-			URL: locationToURL[location],
+			URL: mariadbURL,
 		},
 	}
 }

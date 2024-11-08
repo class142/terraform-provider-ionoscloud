@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -28,9 +29,15 @@ var locationToURL = map[string]string{
 // This function is required in order to make requests to different endpoints based on location.
 func (c *InMemoryDBClient) modifyConfigURL(location string) {
 	clientConfig := c.sdkClient.GetConfig()
+
+	// If the environment variable 'REDISDB_API_URL' is set, use it as the URL.
+	redisDBURL := locationToURL[location]
+	if os.Getenv("REDISDB_API_URL") != "" {
+		redisDBURL = os.Getenv("REDISDB_API_URL")
+	}
 	clientConfig.Servers = inMemoryDB.ServerConfigurations{
 		{
-			URL: locationToURL[location],
+			URL: redisDBURL,
 		},
 	}
 }

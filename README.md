@@ -107,6 +107,16 @@ See the [IonosCloud Provider documentation](https://registry.terraform.io/provid
 | `IONOS_S3_ACCESS_KEY`   | Specify the access key used to authenticate against the IONOS Object Storage API                                                                                              |
 | `IONOS_S3_SECRET_KEY`   | Specify the secret key used to authenticate against the IONOS Object Storage API                                                                                              |
 
+## Additional Environment Variables
+
+| Environment Variable    | Description                                                                                                                                                              |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `S3_API_URL`         | Specify the API URL for S3 | 
+| `CERT_API_URL`       | Specify the API URL for certificates API |  
+| `MARIADB_API_URL`       | Specify the API URL for MariaDB API | 
+| `MONGODB_API_URL`       | Specify the API URL for MongoDB API | 
+| `NFS_API_URL`       | Specify the API URL for NFS API | 
+
 
 ## Certificate pinning:
 

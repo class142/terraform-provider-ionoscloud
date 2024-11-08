@@ -45,9 +45,14 @@ func (c *Client) Location(location string) *Client {
 		"qa/de/txl": "https://qa.nfs.de-txl.ionos.com",
 	}
 
+	nfsURL := locationToURL[location]
+	if os.Getenv("NFS_API_URL") != "" {
+		nfsURL = os.Getenv("NFS_API_URL")
+	}
+
 	c.sdkClient.GetConfig().Servers = sdk.ServerConfigurations{
 		{
-			URL: locationToURL[location],
+			URL: nfsURL,
 		},
 	}
 

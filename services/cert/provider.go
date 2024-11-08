@@ -3,6 +3,7 @@ package cert
 import (
 	"context"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -20,9 +21,15 @@ var locationToURL = map[string]string{
 // This function is required in order to make requests to different endpoints based on location.
 func (c *Client) modifyConfigURL(location string) {
 	clientConfig := c.sdkClient.GetConfig()
+
+	// If the environment variable 'CERT_API_URL' is set, use it as the URL.
+	certUrl := locationToURL[location]
+	if os.Getenv("CERT_API_URL") != "" {
+		certUrl = os.Getenv("CERT_API_URL")
+	}
 	clientConfig.Servers = certmanager.ServerConfigurations{
 		{
-			URL: locationToURL[location],
+			URL: certUrl,
 		},
 	}
 }

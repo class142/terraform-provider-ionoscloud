@@ -119,6 +119,11 @@ type Configuration struct {
 
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
+	s3Endpoint := "https://s3.eu-central-3.ionoscloud.com"
+	if os.Getenv("S3_API_URL") != "" {
+		s3Endpoint = os.Getenv("S3_API_URL")
+	}
+
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "ionos-cloud-sdk-go-object-storage/v1.0.0",
@@ -130,7 +135,7 @@ func NewConfiguration() *Configuration {
 		LogLevel:      getLogLevelFromEnv(),
 		Servers: ServerConfigurations{
 			{
-				URL:         "https://s3.eu-central-3.ionoscloud.com",
+				URL:         s3Endpoint,
 				Description: "The endpoint for the `eu-central-3` region (Berlin, Germany)",
 			},
 		},
