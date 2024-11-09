@@ -114,7 +114,7 @@ See the [IonosCloud Provider documentation](https://registry.terraform.io/provid
 | `S3_API_URL`         | Specify the API URL for S3 | 
 | `CERT_API_URL`       | Specify the API URL for certificates API |  
 | `MARIADB_API_URL`       | Specify the API URL for MariaDB API | 
-| `MONGODB_API_URL`       | Specify the API URL for MongoDB API | 
+| `REDISDB_API_URL`       | Specify the API URL for Redis API | 
 | `NFS_API_URL`       | Specify the API URL for NFS API | 
 
 
