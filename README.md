@@ -182,11 +182,16 @@ now you can see the response body incl. api error message:
   $ make build
   ```
 
+  To link the libraries statically to allow for cross Linux distro usage run:
+  ```sh
+  make fmtcheck && CGO_ENABLED=0 GOOS=linux go install -a -ldflags '-extldflags "-static"'
+  ```
+
   ## Developing the Provider
 
   If you wish to work on the provider, you'll first need [Go](http://www.golang.org) installed on your machine (version 1.18+ is _required_). You'll also need to correctly set up a [GOPATH](http://golang.org/doc/code.html#GOPATH), as well as adding `$GOPATH/bin` to your `$PATH`.
 
-  To compile the provider, run `make build`. This will build the provider and put the provider binary in the `$GOPATH/bin` directory.
+  To compile the provider, run command from above. This will build the provider and put the provider binary in the `$GOPATH/bin` directory.
 
   ```sh
   $ make build
